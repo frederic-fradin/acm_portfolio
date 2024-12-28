@@ -14,17 +14,20 @@ USER_CREDENTIALS = {
 }
 
 def login():
-    st.title("Login")
-    username = st.text_input("Username")
-    password = st.text_input("Password", type="password")
-    if st.button("Login"):
-        if username in USER_CREDENTIALS and USER_CREDENTIALS[username] == password:
-            st.session_state.logged_in = True
-            st.session_state.username = username
-            st.success("Logged in successfully!")
-            main.main()
-        else:
-            st.error("Invalid username or password")
+    c1, c2, c3 = st.columns([1, 1, 1])
+    with c2.container(border=True):
+        st.title("MarketData - Portfolio")
+        st.write("Please login to access the dashboard")
+        username = st.text_input("Username")
+        password = st.text_input("Password", type="password")
+        if st.button("Login", use_container_width=True):
+            if username in USER_CREDENTIALS and USER_CREDENTIALS[username] == password:
+                st.session_state.logged_in = True
+                st.session_state.username = username
+                st.success("Logged in successfully!")
+                main.main()
+            else:
+                st.error("Invalid username or password")
 
 def main():
     if "logged_in" not in st.session_state:

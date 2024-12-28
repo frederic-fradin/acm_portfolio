@@ -56,4 +56,7 @@ def main():
 
                     with st.expander('Data'):
                         st.dataframe(data.reset_index(), use_container_width=True)
+
     
+if __name__ == "__main__":
+    main()
